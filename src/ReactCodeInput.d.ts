@@ -78,7 +78,8 @@ export interface ReactCodeInputProps {
 
     // Callback for parent to have access to container ref
     setContainerRef: (containerRef: Node ) => void
-
+    
+    //fill inputs wit all the characters in the value pasted by the user
     fillFromFirstInput?: boolean
 
 }

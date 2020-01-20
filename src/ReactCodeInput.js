@@ -91,9 +91,6 @@ class ReactCodeInput extends Component {
   handleChange(e) {
     const { filterChars, filterCharsIsWhitelist } = this.props;
 
-      console.log("e.target.value");
-      console.log(e.target.value);
-
       let value = String(e.target.value);
 
     if (this.props.forceUppercase) {
@@ -155,9 +152,6 @@ class ReactCodeInput extends Component {
       }
 
       fullValue = input.join('');
-
-        console.log(fullValue);
-        console.log(input);
 
         this.setState({ value: input.join(''), input });
     }

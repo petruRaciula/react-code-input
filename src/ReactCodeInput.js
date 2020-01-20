@@ -91,7 +91,10 @@ class ReactCodeInput extends Component {
   handleChange(e) {
     const { filterChars, filterCharsIsWhitelist } = this.props;
 
-    let value = String(e.target.value);
+      console.log("e.target.value");
+      console.log(e.target.value);
+
+      let value = String(e.target.value);
 
     if (this.props.forceUppercase) {
       value = value.toUpperCase();
@@ -111,11 +114,21 @@ class ReactCodeInput extends Component {
 
     let fullValue = value;
 
-    if (value !== '') {
+      if (value !== '') {
       const input = this.state.input.slice();
 
       if (value.length > 1) {
-        value.split('').map((chart, i) => {
+        let startInput = 0;
+          if(this.props.fillFromFirstInput && value.length > this.props.fields - Number(e.target.dataset.id)){
+              startInput = this.props.fields - value.length
+          }
+          value.split('').map((chart, i) => {
+          if(this.props.fillFromFirstInput && value.length > this.props.fields - Number(e.target.dataset.id)){
+              if(i < this.props.fields){
+                  input[startInput + i] = chart;
+              }
+              return false;
+          }
           if (Number(e.target.dataset.id) + i < this.props.fields) {
             input[Number(e.target.dataset.id) + i] = chart;
           }
@@ -143,7 +156,10 @@ class ReactCodeInput extends Component {
 
       fullValue = input.join('');
 
-      this.setState({ value: input.join(''), input });
+        console.log(fullValue);
+        console.log(input);
+
+        this.setState({ value: input.join(''), input });
     }
 
     if (this.props.onChange && fullValue) {
@@ -357,6 +373,7 @@ ReactCodeInput.propTypes = {
     onClickContainer: PropTypes.func,
     setContainerRef: PropTypes.func,
     setInputRefs: PropTypes.func,
+    fillFromFirstInput: PropTypes.bool,
 };
 
 export default ReactCodeInput;

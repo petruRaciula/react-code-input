@@ -79,6 +79,8 @@ export interface ReactCodeInputProps {
     // Callback for parent to have access to container ref
     setContainerRef: (containerRef: Node ) => void
 
+    fillFromFirstInput?: boolean
+
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {

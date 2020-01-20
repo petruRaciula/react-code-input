@@ -70,6 +70,7 @@ export interface ReactCodeInputProps {
     // The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.
     inputMode: InputModeTypes
 
+    //fill inputs wit all the characters in the value pasted by the user
     fillFromFirstInput?: boolean
 
 }

@@ -4,7 +4,7 @@
  * https://github.com/40818419/react-code-input
  */
 
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { uuidv4 } from './utils';
@@ -59,8 +59,11 @@ class ReactCodeInput extends Component {
     }
 
     this.textInput = [];
+    this.container = null;
 
     this.uuid = uuidv4();
+
+    // this.codInputRef = useRef(null);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -271,37 +274,49 @@ class ReactCodeInput extends Component {
     }
 
     return (
-      <div className={classNames(className, 'react-code-input')} style={styles.container} onClick={(e) => {
-          console.log("wtf");
-          this.handleOnClick(e)}}>
-        {input.map((value, i) => {
-          return (
-            <input
-              ref={(ref) => {
-                this.textInput[i] = ref;
-              }}
-              id={`${this.uuid}-${i}`}
-              data-id={i}
-              autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
-              value={value}
-              key={`input_${i}`}
-              type={type}
-              min={0}
-              max={9}
-              maxLength={input.length === i + 1 ? 1 : input.length}
-              style={styles.input}
-              autoComplete="off"
-              onFocus={(e) => e.target.select(e)}
-              onBlur={(e) => this.handleBlur(e)}
-              onChange={(e) => this.handleChange(e)}
-              onKeyDown={(e) => this.handleKeyDown(e)}
-              disabled={disabled}
-              data-valid={isValid}
-              pattern={pattern}
-              inputMode={inputMode}
-            />
-          );
-        })}
+      <div
+          className={classNames(className, 'react-code-input')}
+          style={styles.container}
+          onClick={(e) => {
+              console.log("wtf");
+              this.handleOnClick(e)}}
+          ref={(ref) => {
+            this.container = ref;
+            if(this.props.setContainerRef){
+                this.props.setContainerRef(ref);
+            }
+          }}>
+            {input.map((value, i) => {
+              return (
+                <input
+                  ref={(ref) => {
+                    this.textInput[i] = ref;
+                    if(this.props.setInputRefs){
+                        this.props.setInputRefs(this.textInput)
+                    }
+                  }}
+                  id={`${this.uuid}-${i}`}
+                  data-id={i}
+                  autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
+                  value={value}
+                  key={`input_${i}`}
+                  type={type}
+                  min={0}
+                  max={9}
+                  maxLength={input.length === i + 1 ? 1 : input.length}
+                  style={styles.input}
+                  autoComplete="off"
+                  onFocus={(e) => e.target.select(e)}
+                  onBlur={(e) => this.handleBlur(e)}
+                  onChange={(e) => this.handleChange(e)}
+                  onKeyDown={(e) => this.handleKeyDown(e)}
+                  disabled={disabled}
+                  data-valid={isValid}
+                  pattern={pattern}
+                  inputMode={inputMode}
+                />
+              );
+            })}
       </div>
     );
   }
@@ -346,6 +361,8 @@ ReactCodeInput.propTypes = {
     'numeric', 'tel', 'email', 'url',
   ]),
     onClickContainer: PropTypes.func,
+    setContainerRef: PropTypes.func,
+    setInputRefs: PropTypes.func,
 };
 
 export default ReactCodeInput;

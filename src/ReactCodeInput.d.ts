@@ -71,7 +71,13 @@ export interface ReactCodeInputProps {
     inputMode: InputModeTypes
 
     // On Click event on container
-    onClickContainer?: (value: string) => void
+    onClickContainer?: (e: Event) => void
+
+    // Callback for parent to have access to all inputs refs
+    setInputRefs: (inputRefs: Array<Node>) => void
+
+    // Callback for parent to have access to container ref
+    setContainerRef: (containerRef: Node ) => void
 
 }
 

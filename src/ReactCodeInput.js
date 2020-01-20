@@ -229,8 +229,6 @@ class ReactCodeInput extends Component {
   }
 
     handleOnClick(e){
-        console.log("this.props.onClickContainer");
-        console.log(this.props.onClickContainer);
         if(this.props.onClickContainer){
             this.props.onClickContainer(e);
         }
@@ -275,9 +273,7 @@ class ReactCodeInput extends Component {
       <div
           className={classNames(className, 'react-code-input')}
           style={styles.container}
-          onClick={(e) => {
-              console.log("wtf");
-              this.handleOnClick(e)}}
+          onClick={(e) => this.handleOnClick(e)}
           ref={(ref) => {
             this.container = ref;
             if(this.props.setContainerRef){

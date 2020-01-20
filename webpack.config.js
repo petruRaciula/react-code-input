@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = [
     {
-        entry:     './src/ReactCodeInput.js',
+        entry:     './src/ReactCodeInput.jsx',
         devtool:   'source-map',
         mode:      'production',
         output:    {
@@ -15,7 +15,7 @@ module.exports = [
         module:    {
             rules: [
                 {
-                    test:    /\.js$/,
+                    test:    /\.(js|jsx)$/,
                     use:     ['babel-loader'],
                     exclude: /node_modules/,
                 },

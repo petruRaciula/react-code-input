@@ -5,7 +5,7 @@ import { action }                                           from '@storybook/add
 import { withKnobs, boolean, object, text, select, number } from '@storybook/addon-knobs';
 import { withInfo }                                         from '@storybook/addon-info';
 
-import ReactCodeInput from './ReactCodeInput.js';
+import ReactCodeInput from './ReactCodeInput.jsx';
 import CodeInputField from "./ReactCodeInput";
 
 const stories = storiesOf('ReactCodeInput', module);

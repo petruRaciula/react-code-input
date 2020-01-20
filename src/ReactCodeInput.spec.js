@@ -1,5 +1,5 @@
 import React from 'react';
-import CodeInputField from './ReactCodeInput.js';
+import CodeInputField from './ReactCodeInput.jsx';
 
 const numbers = '123456',
   chars = '123FE3';

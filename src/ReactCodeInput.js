@@ -228,8 +228,6 @@ class ReactCodeInput extends Component {
   }
 
     handleOnClick(e){
-        console.log("this.props.onClickContainer");
-        console.log(this.props.onClickContainer);
         if(this.props.onClickContainer){
             this.props.onClickContainer(e);
         }
@@ -271,37 +269,38 @@ class ReactCodeInput extends Component {
     }
 
     return (
-      <div className={classNames(className, 'react-code-input')} style={styles.container} onClick={(e) => {
-          console.log("wtf");
-          this.handleOnClick(e)}}>
-        {input.map((value, i) => {
-          return (
-            <input
-              ref={(ref) => {
-                this.textInput[i] = ref;
-              }}
-              id={`${this.uuid}-${i}`}
-              data-id={i}
-              autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
-              value={value}
-              key={`input_${i}`}
-              type={type}
-              min={0}
-              max={9}
-              maxLength={input.length === i + 1 ? 1 : input.length}
-              style={styles.input}
-              autoComplete="off"
-              onFocus={(e) => e.target.select(e)}
-              onBlur={(e) => this.handleBlur(e)}
-              onChange={(e) => this.handleChange(e)}
-              onKeyDown={(e) => this.handleKeyDown(e)}
-              disabled={disabled}
-              data-valid={isValid}
-              pattern={pattern}
-              inputMode={inputMode}
-            />
-          );
-        })}
+      <div
+          className={classNames(className, 'react-code-input')}
+          style={styles.container}
+          onClick={(e) => this.handleOnClick(e)}>
+            {input.map((value, i) => {
+              return (
+                <input
+                  ref={(ref) => {
+                    this.textInput[i] = ref;
+                  }}
+                  id={`${this.uuid}-${i}`}
+                  data-id={i}
+                  autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
+                  value={value}
+                  key={`input_${i}`}
+                  type={type}
+                  min={0}
+                  max={9}
+                  maxLength={input.length === i + 1 ? 1 : input.length}
+                  style={styles.input}
+                  autoComplete="off"
+                  onFocus={(e) => e.target.select(e)}
+                  onBlur={(e) => this.handleBlur(e)}
+                  onChange={(e) => this.handleChange(e)}
+                  onKeyDown={(e) => this.handleKeyDown(e)}
+                  disabled={disabled}
+                  data-valid={isValid}
+                  pattern={pattern}
+                  inputMode={inputMode}
+                />
+              );
+            })}
       </div>
     );
   }

@@ -71,7 +71,7 @@ export interface ReactCodeInputProps {
     inputMode: InputModeTypes
 
     // On Click event on container
-    onClickContainer?: (value: string) => void
+    onClickContainer?: (evnet: Event) => void
 
 }
 

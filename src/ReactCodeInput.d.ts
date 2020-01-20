@@ -70,6 +70,12 @@ export interface ReactCodeInputProps {
     // The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.
     inputMode: InputModeTypes
 
+    // Callback for parent to have access to all inputs refs
+    setInputRefs: (inputRefs: Array<Node>) => void
+
+    // Callback for parent to have access to container ref
+    setContainerRef: (containerRef: Node ) => void
+
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {

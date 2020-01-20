@@ -4,7 +4,7 @@
  * https://github.com/40818419/react-code-input
  */
 
-import React, { Component, useRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { uuidv4 } from './utils';
@@ -62,8 +62,6 @@ class ReactCodeInput extends Component {
     this.container = null;
 
     this.uuid = uuidv4();
-
-    // this.codInputRef = useRef(null);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
